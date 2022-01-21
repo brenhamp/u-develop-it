@@ -13,9 +13,9 @@ const db = mysql.createConnection(
     {
       host: 'localhost',
       // Your MySQL username,
-      user: '',
+      user: 'root',
       // Your MySQL password
-      password: '',
+      password: '5x)Q>3K=hfuVJ3_}',
       database: 'election'
     },
     console.log('Connected to the election database.')
@@ -66,29 +66,6 @@ const db = mysql.createConnection(
           message: 'deleted',
           changes: result.affectedRows,
           id: req.params.id
-        });
-      }
-    });
-  });
-
-  // Update a candidate's party
-app.put('/api/candidate/:id', (req, res) => {
-    const sql = `UPDATE candidates SET party_id = ? 
-                 WHERE id = ?`;
-    const params = [req.body.party_id, req.params.id];
-    db.query(sql, params, (err, result) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-        // check if a record was found
-      } else if (!result.affectedRows) {
-        res.json({
-          message: 'Candidate not found'
-        });
-      } else {
-        res.json({
-          message: 'success',
-          data: req.body,
-          changes: result.affectedRows
         });
       }
     });
